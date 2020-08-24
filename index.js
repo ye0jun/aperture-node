@@ -6,12 +6,11 @@ const execa = require('execa');
 const tempy = require('tempy');
 const macosVersion = require('macos-version');
 const fileUrl = require('file-url');
-const electronUtil = require('electron-util/node');
 
 const debuglog = util.debuglog('aperture');
 
 // Workaround for https://github.com/electron/electron/issues/9459
-const BIN = path.join(electronUtil.fixPathForAsarUnpack(__dirname), 'aperture');
+const BIN = path.join(__dirname, 'aperture').replace('app.asar' + path.sep, 'app.asar.unpacked' + path.sep);
 
 const supportsHevcHardwareEncoding = (() => {
   if (!macosVersion.isGreaterThanOrEqualTo('10.13')) {
